@@ -1,33 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "_base.html" %}
+{% block content %}
+<a class="btn btn-secondary btn-sm" href="{% url 'leads:lead-list' %}" >Go back to leads</a>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create lead</title>
-    <style>
-        .lead {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 6px;
-            padding-right: 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 100%;
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
 
-        }
-    </style>
-</head>
-
-<body>
-    <a href="/leads">Go back to leads</a>
-
-    <form  method = "POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-
-</html>
+{% endblock %}

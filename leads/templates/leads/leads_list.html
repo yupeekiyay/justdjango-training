@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leads</title>
-    <style>
-        .lead {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 6px;
-            padding-right: 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 100%;
+{% extends "_base.html" %}
+{% block content %}
 
-        }
-    </style>
-</head>
-<body>
-    <a href="/leads/create">Create a new lead</a>
-    <hr>
+<hr>
 
-    <h1>This is all of our leads</h1>
-    {% for lead in leads%}
-    <div class="lead">
-        <a href="/leads/{{lead.pk}}/">{{ lead.first_name }} {{ lead.last_name }}.</a> Age: {{ lead.age }}. Agent:  {{ lead.agent }} 
-        <a href="{{lead.pk}}/update">Update</a>
-        <a href="{{lead.pk}}/delete">Delete</a>
-    </div>
-    {% endfor %}
+<h1>This is all of our leads</h1>
 
-</body>
-</html>
+<div><a class="btn btn-secondary btn-sm" href="{% url 'leads:lead-create' %}" >Create a new lead</a></div>
+<table class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Lead name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Agent</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lead in leads %}
+        <tr>
+            <th><a href="{% url 'leads:lead-detail' lead.pk %}"> {{ lead.pk }}</a></th>
+            <td><a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }} </a></td>
+            <td>{{ lead.age }}</td>
+            <td>{{ lead.agent }}</td>
+            <td><a href="{% url 'leads:lead-update' lead.pk %}"><i class="fas fa-edit"></i></a></td>
+            <td><a href="{% url 'leads:lead-delete' lead.pk %}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
