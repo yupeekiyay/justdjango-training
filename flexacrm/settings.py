@@ -1,16 +1,11 @@
 
 from pathlib import Path
-import os
-
 import environ
 
-
 env = environ.Env(
-
     DEBUG=(bool, False)
 )
 
-# environ.Env.read_env()
 READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
 if READ_DOT_ENV_FILE:
     environ.Env.read_env()
@@ -18,10 +13,10 @@ if READ_DOT_ENV_FILE:
 DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -33,13 +28,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third party apps
+    'crispy_forms',
 
-    #Local apps
+    # Local apps
     'leads',
     'agents',
-
-    #3RD PARTY APPS
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -53,12 +48,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'flexacrm.urls'
+ROOT_URLCONF = 'djcrm.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/"templates"],
+        'DIRS': [ BASE_DIR / "templates" ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'flexacrm.wsgi.application'
+WSGI_APPLICATION = 'djcrm.wsgi.application'
 
 
 # Database
@@ -83,8 +78,8 @@ DATABASES = {
         'NAME': env("DB_NAME"),
         'USER': env("DB_USER"),
         'PASSWORD': env("DB_PASSWORD"),
-        "HOST":env("DB_HOST"),
-        "PORT": env("DB_PORT"),
+        'HOST': env("DB_HOST"),
+        'PORT': env("DB_PORT"),
     }
 }
 
@@ -120,11 +115,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-### test commit 14-37
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-AUTH_USER_MODEL = 'leads.User'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -142,12 +136,8 @@ LOGIN_URL = "/login"
 LOGOUT_REDIRECT_URL = "/"
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-print("ALLOWED_HOSTS")
-print(ALLOWED_HOSTS)
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    print("SECURE_PROXY_SSL_HEADER")
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -157,6 +147,29 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
-    print("X_FRAME_OPTIONS")
-    ALLOWED_HOSTS += ["104.16.243.78","flexacrm-q7zxe.ondigitalocean.app", "*.ondigitalocean.app","104.16.243.*"]
-    print(ALLOWED_HOSTS)
+
+    ALLOWED_HOSTS = ["*"]
+
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = env("EMAIL_HOST")
+    EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = env("EMAIL_PORT")
+    DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
+
