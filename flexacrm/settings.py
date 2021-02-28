@@ -156,5 +156,5 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWEDHOSTS = []
-    ALLOWEDHOSTS += ip_addresses()
+    ALLOWEDHOSTS = ['*']
+    
