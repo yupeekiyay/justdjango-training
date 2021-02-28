@@ -156,5 +156,4 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWEDHOSTS = ['*','104.16.243.78','flexacrm-q7zxe.ondigitalocean.app']
-ALLOWEDHOSTS = ['*','104.16.243.78','flexacrm-q7zxe.ondigitalocean.app']
+    ALLOWED_HOSTS += ["*","104.16.243.78","flexacrm-q7zxe.ondigitalocean.app", "*.ondigitalocean.app","104.16.243.*"]
