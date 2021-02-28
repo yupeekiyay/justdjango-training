@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'djcrm.urls'
+ROOT_URLCONF = 'flexacrm.urls'
 
 TEMPLATES = [
     {
@@ -66,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djcrm.wsgi.application'
+WSGI_APPLICATION = 'flexacrm.wsgi.application'
 
 
 # Database
