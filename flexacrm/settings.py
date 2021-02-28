@@ -155,4 +155,4 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWED_HOSTS = ['flexacrm-q7zxe.ondigitalocean.app']
+    ALLOWED_HOSTS = ["flexacrm-q7zxe.ondigitalocean.app"]
