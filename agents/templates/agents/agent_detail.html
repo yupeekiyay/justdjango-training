@@ -1,0 +1,93 @@
+{% extends "_base.html" %}
+{% block content %}
+<a class="btn btn-secondary btn-sm" href="{% url 'agents:agent-list' %}" role="button">Go back to
+    agents</a>
+
+<!-- Container for demo purpose -->
+<div class="container my-5 py-5 shadow-5">
+
+    <!--Section: Design Block-->
+    <section>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <!--Section: Gallery-->
+                <section>
+                    <div class="ecommerce-gallery" data-mdb-zoom-effect="false">
+                        <div class="row">
+                            <div class="col-12 mb-1">
+
+                                <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2016-02/15/full/1455511888-6577.jpg"
+                                    alt="Dr.Agarbval image 1" class="ecommerce-gallery-main-img active w-100" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <!--Section: Gallery-->
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <!--Section: Basic info-->
+                <section>
+                    <!-- Basic data -->
+                    <h1 class="h4 mb-3">This is the details of {{agent.user.first_name}}</h1>
+
+                    <p class="mb-3"><a href="" class="text-reset">ID: {{agent.pk}}</a></p>
+
+
+                    <p class="mb-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                        nostrum quam nemo in natus reiciendis! Incidunt dolorem beatae
+                        minus nesciunt eveniet officia eaque ipsam nam harum. Autem
+                        quo ullam dolore.
+                    </p>
+                    <!-- Basic data -->
+
+                    <!-- Details table -->
+                    <table class="table table-sm table-borderless mb-0">
+                        <tbody>
+                            <tr>
+                                <th class="ps-0 w-25" scope="row">
+                                    <strong>First name</strong>
+                                </th>
+                                <td>{{agent.user.first_name}}</td>
+                            </tr>
+                            <tr>
+                                <th class="ps-0 w-25" scope="row">
+                                    <strong>Last name</strong>
+                                </th>
+                                <td>{{agent.user.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <th class="ps-0 w-25" scope="row">
+                                    <strong>Agent</strong>
+                                </th>
+                                <td>{{agent.user}}</td>
+                            </tr>
+                            <tr>
+                                <th class="ps-0 w-25" scope="row">
+                                    <strong>Age</strong>
+                                </th>
+                                <td>{{agent.user.age}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Details table -->
+
+                    <hr />
+
+                    <a href="{% url 'agents:agent-update' agent.pk %}"><i class="fas fa-edit"></i>Update</a>
+                    <a href="{% url 'agents:agent-delete' agent.pk %}"><i class="fas fa-trash"></i>Delete</a>
+                </section>
+                <!--Section: Basic info-->
+            </div>
+        </div>
+    </section>
+    <!--Section: Design Block-->
+
+</div>
+
+
+
+{% endblock %}

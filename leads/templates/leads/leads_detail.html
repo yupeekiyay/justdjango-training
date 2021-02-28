@@ -3,18 +3,20 @@
 <a class="btn btn-secondary btn-sm" href="{% url 'leads:lead-list' %}" role="button">Go back to
     leads</a>
 
+    {% include "./minor_navbar.html" %}
 <!-- Container for demo purpose -->
+
 <div class="container my-5 py-5 shadow-5">
 
     <!--Section: Design Block-->
     <section>
         <div class="row">
-            <div class="col-md-6 mb-4">
-                <!--Section: Gallery-->
+            <div class="col-md-4 mb-4">
+
                 <section>
                     <div class="ecommerce-gallery" data-mdb-zoom-effect="false">
                         <div class="row">
-                            <div class="col-12 mb-1">
+                            <div class="col-6 mb-1">
 
                                 <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2016-02/15/full/1455511888-6577.jpg"
                                     alt="Dr.Agarbval image 1" class="ecommerce-gallery-main-img active w-100" />
@@ -24,66 +26,78 @@
                         </div>
                     </div>
                 </section>
-                <!--Section: Gallery-->
+
+            </div>
+            <!-- Tabs navs -->
+
+
+            <div class="col-md-8 mb-4">
+                <!--Section: Basic info-->
+                <!-- Basic data -->
+                <h1 class="h4 mb-3">This is the details of {{lead.first_name}}</h1>
+
+                <p class="mb-3"><a href="" class="text-reset">ID: {{lead.pk}}</a></p>
+
+
+                <p class="mb-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                    nostrum quam nemo in natus reiciendis! Incidunt dolorem beatae
+                    minus nesciunt eveniet officia eaque ipsam nam harum. Autem
+                    quo ullam dolore.
+                </p>
+                <!-- Basic data -->
+
+                <!-- Details table -->
+                <table class="table table-sm table-borderless mb-0">
+                    <tbody>
+                        <tr>
+                            <th class="ps-0 w-25" scope="row">
+                                <strong>First name</strong>
+                            </th>
+                            <td>{{lead.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <th class="ps-0 w-25" scope="row">
+                                <strong>Last name</strong>
+                            </th>
+                            <td>{{lead.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <th class="ps-0 w-25" scope="row">
+                                <strong>Agent</strong>
+                            </th>
+                            <td>{{lead.agent}}</td>
+                        </tr>
+                        <tr>
+                            <th class="ps-0 w-25" scope="row">
+                                <strong>Age</strong>
+                            </th>
+                            <td>{{lead.age}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Details table -->
+                <a href="#">
+                    <p>Category {{ category.name }}</p>
+                    <a href="{% url 'leads:assign-category' lead.pk %}"><i class="fas fa-edit"></i>Update category</a>
+                </a>
+
+
+                <hr />
+                {% if request.user.is_organizer %}
+                <a href="{% url 'leads:lead-update' lead.pk %}"><i class="fas fa-edit"></i>Update</a>
+                <a href="{% url 'leads:lead-delete' lead.pk %}"><i class="fas fa-trash"></i>Delete</a>
+                {% endif %}
             </div>
 
-            <div class="col-md-6 mb-4">
-                <!--Section: Basic info-->
-                <section>
-                    <!-- Basic data -->
-                    <h1 class="h4 mb-3">This is the details of {{lead.first_name}}</h1>
+            <!--Section: Basic info-->
 
-                    <p class="mb-3"><a href="" class="text-reset">ID: {{lead.pk}}</a></p>
-
-
-                    <p class="mb-3">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                        nostrum quam nemo in natus reiciendis! Incidunt dolorem beatae
-                        minus nesciunt eveniet officia eaque ipsam nam harum. Autem
-                        quo ullam dolore.
-                    </p>
-                    <!-- Basic data -->
-
-                    <!-- Details table -->
-                    <table class="table table-sm table-borderless mb-0">
-                        <tbody>
-                            <tr>
-                                <th class="ps-0 w-25" scope="row">
-                                    <strong>First name</strong>
-                                </th>
-                                <td>{{lead.first_name}}</td>
-                            </tr>
-                            <tr>
-                                <th class="ps-0 w-25" scope="row">
-                                    <strong>Last name</strong>
-                                </th>
-                                <td>{{lead.last_name}}</td>
-                            </tr>
-                            <tr>
-                                <th class="ps-0 w-25" scope="row">
-                                    <strong>Agent</strong>
-                                </th>
-                                <td>{{lead.agent}}</td>
-                            </tr>
-                            <tr>
-                                <th class="ps-0 w-25" scope="row">
-                                    <strong>Age</strong>
-                                </th>
-                                <td>{{lead.age}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- Details table -->
-
-                    <hr />
-
-                    <a href="{% url 'leads:lead-update' lead.pk %}"><i class="fas fa-edit"></i>Update</a>
-                    <a href="{% url 'leads:lead-delete' lead.pk %}"><i class="fas fa-trash"></i>Delete</a>
-                </section>
-                <!--Section: Basic info-->
-            </div>
+            <!--Second tab-->
         </div>
     </section>
+
+
+
     <!--Section: Design Block-->
 
 </div>

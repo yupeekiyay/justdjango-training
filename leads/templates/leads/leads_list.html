@@ -1,11 +1,14 @@
 {% extends "_base.html" %}
 {% block content %}
 
+<div class="container">
 <hr>
 
-<h1>This is all of our leads</h1>
-
-<div><a class="btn btn-secondary btn-sm" href="{% url 'leads:lead-create' %}" >Create a new lead</a></div>
+{% if request.user.is_organizer %}
+<div><a class="btn btn-secondary btn-sm" href="{% url 'leads:lead-create' %}">Create a new lead</a></div>
+<div><a class="btn btn-secondary btn-sm" href="{% url 'leads:category-list' %}">View categories</a></div>
+{% endif %}
+<h1> Assigned leads </h1>
 <table class="table table-sm table-hover">
     <thead>
         <tr>
@@ -13,6 +16,8 @@
             <th scope="col">Lead name</th>
             <th scope="col">Age</th>
             <th scope="col">Agent</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -22,10 +27,66 @@
             <td><a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }} </a></td>
             <td>{{ lead.age }}</td>
             <td>{{ lead.agent }}</td>
-            <td><a href="{% url 'leads:lead-update' lead.pk %}"><i class="fas fa-edit"></i></a></td>
-            <td><a href="{% url 'leads:lead-delete' lead.pk %}"><i class="fas fa-trash"></i></a></td>
+            <td>
+                {% if lead.category %}
+                <span class="badge bg-primary">{{lead.category}}</span>
+                {% else %}
+                <span class="badge bg-light text-dark">Unassigned</span>
+                {% endif %}
+            </td>
+            {% if request.user.is_organizer %}
+
+            <td><a href="{% url 'leads:lead-update' lead.pk %}"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'leads:lead-delete' lead.pk %}"><i class="fas fa-trash"></i></a></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
+
+
+
 </table>
+<h1> Unassigned leads </h1>
+{% if unassigned_leads.exists %}
+
+<table class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Lead name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Agent</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lead in unassigned_leads %}
+        <tr>
+            <th><a href="{% url 'leads:lead-detail' lead.pk %}"> {{ lead.pk }}</a></th>
+            <td><a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }} </a></td>
+            <td>{{ lead.age }}</td>
+            <td>{{ lead.agent }}</td>
+            <td>
+                {% if lead.category %}
+                <span class="badge bg-primary">{{lead.category}}</span>
+                {% else %}
+                <span class="badge bg-light text-dark">{{lead.category}}</span>
+                {% endif %}
+            </td>
+            {% if request.user.is_organizer %}
+
+            <td><a href="{% url 'leads:lead-update' lead.pk %}"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'leads:lead-delete' lead.pk %}"><i class="fas fa-trash"></i></a></td>
+            {% endif %}
+
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endif %}
+</div>
+
+
 {% endblock %}

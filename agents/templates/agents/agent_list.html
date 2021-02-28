@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<div class="container">
+
+    <div><a class="btn btn-secondary btn-sm" href="{% url 'agents:agent-create' %}">Create a new agent</a></div>
+    <h1>Agent list</h1>
+
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Agent name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Agent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for agent in object_list %}
+            <tr>
+                <th>{{ agent.pk }}</a></th>
+                <td> <a href="{% url 'agents:agent-detail' agent.pk %}">{{ agent.user.username }} </a></td>
+                <td><a href="{% url 'agents:agent-detail' agent.pk %}">{{ agent.user.username }}</a></td>
+                <td>{{ agent.organization }}</td>
+                <td><a href="{% url 'agents:agent-update' agent.pk %}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="{% url 'agents:agent-delete' agent.pk %}"><i class="fas fa-trash"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock%}

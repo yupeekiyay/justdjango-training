@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block content %}
+<hr>
+
+
+{% if request.user.is_organizer %}
+<div><a class="btn btn-secondary btn-sm" href="#">Create a new category</a></div>
+{% endif %}
+<div class="container">
+<h1> {{ category.name }} </h1>
+<table class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for lead in category.leads.all %}
+        <tr>
+            <th><a href="{% url 'leads:lead-detail' lead.pk %}"> {{ lead.first_name }} </a></th>
+            <td><a href="{% url 'leads:lead-detail' lead.pk %}"> {{ lead.last_name }}  </a></td>
+
+            {% if request.user.is_organizer %}
+            <td><a href="#"><i class="fas fa-edit"></i></a></td>
+            <td><a href="#"><i class="fas fa-trash"></i></a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+
+
+
+</table>
+</div>
+{% endblock %}

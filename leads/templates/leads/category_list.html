@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+{% block content %}
+<hr>
+
+
+{% if request.user.is_organizer %}
+<div><a class="btn btn-secondary btn-sm" href="#">Create a new category</a></div>
+{% endif %}
+<div class="container">
+<h1> Categories </h1>
+<table class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Category name</th>
+            <th scope="col">Tasks</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th><a href="#"> Unassigned </a></th>
+            <td><a href="#"> {{ unassigned_lead_count }} </a></td>
+
+        </tr>
+        {% for category in category_list %}
+        <tr>
+            <th><a href="{% url 'leads:category-detail' category.pk %}"> {{ category.name }} </a></th>
+            <td><a href="#"> TODO Count </a></td>
+
+            {% if request.user.is_organizer %}
+            <td><a href="#"><i class="fas fa-edit"></i></a></td>
+            <td><a href="#"><i class="fas fa-trash"></i></a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+
+
+
+</table>
+</div>
+{% endblock %}

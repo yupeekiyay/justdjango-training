@@ -1,0 +1,15 @@
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <form class="container-fluid justify-content-center">
+          <button class="btn btn-sm btn-outline-secondary" type="button" >
+            <a href="{% url 'leads:lead-detail' lead.pk %}">Information</a>   
+          </button>
+          <button class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'leads:assign-category' lead.pk %}">
+            <a href="{% url 'leads:assign-category' lead.pk %}">Update Category</a> 
+          </button>
+          <button class="btn btn-sm btn-outline-secondary" type="button">
+            <a href="{% url 'leads:lead-update' lead.pk %}">Update lead</a> 
+          </button>
+        </form>
+      </nav>
+  </div>
