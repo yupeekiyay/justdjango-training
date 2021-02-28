@@ -4,6 +4,15 @@ import os
 
 import environ
 
+def ipaddresses():
+    iplist = []
+    for interface in netifaces.interfaces():
+    addrs = netifaces.ifaddresses(interface)
+    for x in (netifaces.AF_INET, netifaces.AFINET6):
+    if x in addrs:
+    iplist.append(addrs[x][0][‘addr’])
+    return ip_list
+
 env = environ.Env(
 
     DEBUG=(bool, False)
@@ -155,4 +164,4 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWED_HOSTS = ["flexacrm-q7zxe.ondigitalocean.app"]
+    ALLOWEDHOSTS += ipaddresses()
