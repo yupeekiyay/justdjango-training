@@ -157,4 +157,4 @@ if not DEBUG:
     X_FRAME_OPTIONS = "DENY"
 
     ALLOWEDHOSTS = ['*','104.16.243.78','flexacrm-q7zxe.ondigitalocean.app']
-    
+ALLOWEDHOSTS = ['*','104.16.243.78','flexacrm-q7zxe.ondigitalocean.app']
