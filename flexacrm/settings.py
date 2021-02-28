@@ -4,14 +4,6 @@ import os
 
 import environ
 
-def ipaddresses():
-    iplist = []
-    for interface in netifaces.interfaces():
-        addrs = netifaces.ifaddresses(interface)
-        for x in (netifaces.AF_INET, netifaces.AFINET6):
-            if x in addrs:
-                iplist.append(addrs[x][0][‘addr’])
-    return ip_list
 
 env = environ.Env(
 
@@ -164,4 +156,4 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWEDHOSTS += ipaddresses()
+    ALLOWEDHOSTS += ip_addresses()
