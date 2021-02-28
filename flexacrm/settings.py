@@ -143,7 +143,7 @@ LOGOUT_REDIRECT_URL = "/"
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-ALLOWEDHOSTS = ['*']
+
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
@@ -156,5 +156,5 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWEDHOSTS = ['*']
+    ALLOWEDHOSTS = ['*','104.16.243.78','flexacrm-q7zxe.ondigitalocean.app']
     
