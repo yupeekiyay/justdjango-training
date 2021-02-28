@@ -7,10 +7,10 @@ import environ
 def ipaddresses():
     iplist = []
     for interface in netifaces.interfaces():
-    addrs = netifaces.ifaddresses(interface)
-    for x in (netifaces.AF_INET, netifaces.AFINET6):
-    if x in addrs:
-    iplist.append(addrs[x][0][‘addr’])
+        addrs = netifaces.ifaddresses(interface)
+        for x in (netifaces.AF_INET, netifaces.AFINET6):
+            if x in addrs:
+                iplist.append(addrs[x][0][‘addr’])
     return ip_list
 
 env = environ.Env(
