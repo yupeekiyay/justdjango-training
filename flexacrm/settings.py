@@ -26,7 +26,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,7 +119,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+### test commit 14-37
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -128,14 +127,32 @@ AUTH_USER_MODEL = 'leads.User'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static"]
+    BASE_DIR / "static"
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = "media_root"
 STATIC_ROOT = "static_root"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+AUTH_USER_MODEL = 'leads.User'
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 LOGIN_REDIRECT_URL = "/leads"
 LOGIN_URL = "/login"
-LOGOUT_REDIRECT_URL="/"
+LOGOUT_REDIRECT_URL = "/"
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    X_FRAME_OPTIONS = "DENY"
+
+    ALLOWED_HOSTS = ["*"]
