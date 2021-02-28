@@ -143,10 +143,11 @@ LOGOUT_REDIRECT_URL = "/"
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
+print("ALLOWED_HOSTS")
+print(ALLOWED_HOSTS)
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    print("SECURE_PROXY_SSL_HEADER")
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -156,5 +157,6 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
-
+    print("X_FRAME_OPTIONS")
     ALLOWED_HOSTS += ["104.16.243.78","flexacrm-q7zxe.ondigitalocean.app", "*.ondigitalocean.app","104.16.243.*"]
+    print(ALLOWED_HOSTS)
